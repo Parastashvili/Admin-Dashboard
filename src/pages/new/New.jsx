@@ -3,18 +3,39 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+  const [data, setData] = useState({});
+
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setData({ ...data, [id]: value });
+  };
+  console.log(data);
   const handleAdd = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "cities", "LA"), {
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA",
-    });
+    try {
+      const res = await addDoc(collection(db, "cities"), {
+        name: "Los Angeles",
+        state: "CA",
+        country: "USA",
+        timeStamp: serverTimestamp(),
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -53,7 +74,12 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
+                  <input
+                    id={input.id}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    onChange={handleInput}
+                  />
                 </div>
               ))}
               <button type="submit">Send</button>
