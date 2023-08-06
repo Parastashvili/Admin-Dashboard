@@ -1,5 +1,6 @@
 import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -7,6 +8,7 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import { useEffect, useState } from "react";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 const Widget = ({ type }) => {
   const [amount, setAmount] = useState(null);
@@ -118,8 +120,8 @@ const Widget = ({ type }) => {
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
+        <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
+          {diff < 0 ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
           {diff} %
         </div>
         {data.icon}
