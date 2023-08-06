@@ -31,7 +31,7 @@ const Datatable = () => {
     // fetchData();
     //listen
     const unsub = onSnapshot(
-      doc(db, "users"),
+      collection(db, "users"),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
