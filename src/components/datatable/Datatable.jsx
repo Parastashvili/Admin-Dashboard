@@ -51,7 +51,7 @@ const Datatable = (props) => {
           <div className="cellAction">
             <Link
               onClick={() => handleEdit(params.row.id)}
-              // to="/editProduct"
+              to="/editProduct"
               style={{ textDecoration: "none" }}
             >
               <div className="viewButton">View</div>

@@ -5,7 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useEffect, useState } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,26 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 const New = ({ inputs, title, edit }) => {
+  const [firebaseData, setFirebaseData] = useState([]);
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "carusell"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setFirebaseData(list);
+        console.log(list[0]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }, []);
   const [category, setCategory] = useState("");
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -124,24 +144,13 @@ const New = ({ inputs, title, edit }) => {
                     label="Category"
                     onChange={handleChange}
                   >
-                    <MenuItem value={"carusell"}>First Carusell</MenuItem>
+                    <MenuItem value={"carusell"}>s</MenuItem>
                     <MenuItem value={"allProducts"}>All Products</MenuItem>
                     <MenuItem value={"midderHero"}>Midder Hero</MenuItem>
                     <MenuItem value={"users"}>ZZZ Register User</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input
-                    id={input.id}
-                    type={input.type}
-                    placeholder={input.placeholder}
-                    onChange={handleInput}
-                  />
-                </div>
-              ))}
               <Button
                 disabled={per !== null && per < 100}
                 type="submit"
