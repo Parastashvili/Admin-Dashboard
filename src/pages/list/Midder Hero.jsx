@@ -8,7 +8,7 @@ const List = (props) => {
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <Datatable content={props.page} />
+        <Datatable content={props.page} sectionHeader="Add Mid Hero Items" />
       </div>
     </div>
   );
