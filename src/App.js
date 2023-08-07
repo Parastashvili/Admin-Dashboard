@@ -59,7 +59,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="carusell-items">
+            <Route path="carusell">
               <Route
                 index
                 element={
@@ -85,7 +85,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="All-Products">
+            <Route path="allProducts">
               <Route
                 index
                 element={
@@ -111,7 +111,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="Midder-Hero">
+            <Route path="midderHero">
               <Route
                 index
                 element={

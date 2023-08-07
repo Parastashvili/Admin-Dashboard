@@ -130,6 +130,7 @@ const New = ({ inputs, title }) => {
                     <MenuItem value={"carusell"}>First Carusell</MenuItem>
                     <MenuItem value={"allProducts"}>All Products</MenuItem>
                     <MenuItem value={"midderHero"}>Midder Hero</MenuItem>
+                    <MenuItem value={"users"}>ZZZ Register User</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
