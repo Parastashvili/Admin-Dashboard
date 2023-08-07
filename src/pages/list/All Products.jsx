@@ -8,7 +8,11 @@ const List = (props) => {
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <Datatable content={props.page} sectionHeader="Add Carusell Items" />
+        <Datatable
+          edit={props.edition}
+          content={props.page}
+          sectionHeader="Add Carusell Items"
+        />
       </div>
     </div>
   );

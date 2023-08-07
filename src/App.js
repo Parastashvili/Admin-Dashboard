@@ -6,14 +6,16 @@ import FirstCarusell from "./pages/list/First Carusell";
 import MidderHero from "./pages/list/Midder Hero";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import Edit from "./pages/edit/Edit";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  const [editable, setEditable] = useState("");
   const { darkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(AuthContext);
   const RequireAuth = ({ children }) => {
@@ -64,7 +66,7 @@ function App() {
                 index
                 element={
                   <RequireAuth>
-                    <AllProducts page="carusell" />
+                    <AllProducts edition={setEditable} page="carusell" />
                   </RequireAuth>
                 }
               />
@@ -142,7 +144,11 @@ function App() {
                 index
                 element={
                   <RequireAuth>
-                    <Single />
+                    <Edit
+                      edit={editable}
+                      inputs={productInputs}
+                      title="Edit Product"
+                    />
                   </RequireAuth>
                 }
               />

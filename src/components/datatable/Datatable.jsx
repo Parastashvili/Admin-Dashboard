@@ -33,6 +33,13 @@ const Datatable = (props) => {
       console.log(err);
     }
   };
+  const handleEdit = async (id) => {
+    try {
+      props.edit(id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const actionColumn = [
     {
@@ -42,7 +49,11 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/editProduct" style={{ textDecoration: "none" }}>
+            <Link
+              onClick={() => handleEdit(params.row.id)}
+              // to="/editProduct"
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">View</div>
             </Link>
             <div
