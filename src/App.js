@@ -137,6 +137,16 @@ function App() {
                 }
               />
             </Route>
+            <Route path="editProduct">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <Single />
+                  </RequireAuth>
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
