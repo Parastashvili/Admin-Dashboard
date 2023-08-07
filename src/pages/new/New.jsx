@@ -3,19 +3,28 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Password } from "@mui/icons-material";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import Stack from "@mui/material/Stack";
+import Checkbox from "@mui/material/Checkbox";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 const New = ({ inputs, title }) => {
+  const [category, setCategory] = useState("");
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPer] = useState(null);
@@ -60,26 +69,18 @@ const New = ({ inputs, title }) => {
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
-
     setData({ ...data, [id]: value });
   };
-
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "users", res.user.uid), {
+      await addDoc(collection(db, category), {
         ...data,
-        timeStamp: serverTimestamp(),
+        added: new Date().toLocaleDateString(),
       });
       navigate(-1);
-      console.log(res);
     } catch (err) {
-      console.log(err);
+      alert("Error Try Again");
     }
   };
 
@@ -99,23 +100,39 @@ const New = ({ inputs, title }) => {
                   ? URL.createObjectURL(file)
                   : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
               }
-              alt=""
+              alt="Image"
+            />
+            <label htmlFor="file">
+              სურათი :<DriveFolderUploadOutlinedIcon className="icon" />
+            </label>
+            <input
+              type="file"
+              id="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              style={{ display: "none" }}
             />
           </div>
           <div className="right">
             <form onSubmit={handleAdd}>
-              <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
-                />
-              </div>
-
+              <div className="formInput"></div>
+              <Box sx={{ width: "71%" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Category
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={category}
+                    label="Category"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"carusell"}>First Carusell</MenuItem>
+                    <MenuItem value={"allProducts"}>All Products</MenuItem>
+                    <MenuItem value={"midderHero"}>Midder Hero</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
@@ -127,9 +144,14 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-              <button disabled={per !== null && per < 100} type="submit">
-                Send
-              </button>
+              <Button
+                disabled={per !== null && per < 100}
+                type="submit"
+                variant="contained"
+                endIcon={<SendIcon />}
+              >
+                Add Item
+              </Button>
             </form>
           </div>
         </div>

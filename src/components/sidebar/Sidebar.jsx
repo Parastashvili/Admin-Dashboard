@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import StoreIcon from "@mui/icons-material/Store";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import MuseumIcon from "@mui/icons-material/Museum";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -34,17 +36,23 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </li>
           </Link>
-          <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <p className="title">Products</p>
+          <Link to="/carusell-items" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <StorefrontIcon className="icon" />
+              <span>First Carusell </span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/All-Products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>All Products</span>
+            </li>
+          </Link>
+          <Link to="/Midder-Hero" style={{ textDecoration: "none" }}>
+            <li>
+              <MuseumIcon className="icon" />
+              <span>Midder Hero</span>
             </li>
           </Link>
           {/* <li>
@@ -78,6 +86,12 @@ const Sidebar = () => {
             <span>Settings</span>
           </li> */}
           <p className="title">USER</p>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>

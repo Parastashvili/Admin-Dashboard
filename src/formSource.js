@@ -1,48 +1,47 @@
-export const userInputs = [
+export const productInputs = [
   {
-    id: "username",
-    label: "Username",
+    id: "nameGeo",
+    label: "სახელი ქართულად",
     type: "text",
-    placeholder: "john_doe",
   },
   {
-    id: "displayName",
-    label: "Name and surname",
+    id: "nameEn",
+    label: "სახელი ინგლისურად",
     type: "text",
-    placeholder: "John Doe",
   },
   {
-    id: "email",
-    label: "Email",
-    type: "mail",
-    placeholder: "john_doe@gmail.com",
-  },
-  {
-    id: "number",
-    label: "Phone",
+    id: "nameRus",
+    label: "სახელი რუსულად",
     type: "text",
-    placeholder: "+1 234 567 89",
   },
   {
-    id: "password",
-    label: "Password",
-    type: "password",
+    id: "dailyprice",
+    label: "ფასი ლარში",
+    type: "number",
   },
   {
-    id: "address",
-    label: "Address",
+    id: "dscGeo",
+    label: "აღწერა ქართულად",
     type: "text",
-    placeholder: "Elton St. 216 NewYork",
   },
   {
-    id: "country",
-    label: "Country",
+    id: "dscEn",
+    label: "აღწერა ინგლისურად",
     type: "text",
-    placeholder: "USA",
+  },
+  {
+    id: "dscRus",
+    label: "აღწერა რუსულად",
+    type: "text",
+  },
+  {
+    id: "status",
+    label: "სტატუსი",
+    type: "checkbox",
   },
 ];
 
-export const productInputs = [
+export const userInputs = [
   {
     id: 1,
     label: "Title",
