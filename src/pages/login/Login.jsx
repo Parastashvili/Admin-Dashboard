@@ -4,6 +4,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { LoginOutlined, MailOutlined, LockOutlined } from "@ant-design/icons";
+import { Input } from "antd";
+import { Button, Space } from "antd";
 const Login = () => {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
@@ -27,18 +30,23 @@ const Login = () => {
   return (
     <div className="login">
       <form onSubmit={handleLogin}>
-        <input
+        <Input
           type="email"
-          placeholder="email"
+          placeholder="Email address"
+          prefix={<MailOutlined />}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        <Input
           type="password"
-          placeholder="password"
+          placeholder="Password"
+          prefix={<LockOutlined />}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-        {error && <span>Wrond Email or password!</span>}
+        <button className="login" type="submit">
+          Log In
+          <LoginOutlined />
+        </button>
+        {error && <span className="errorText">Wrond Email or password!</span>}
       </form>
     </div>
   );

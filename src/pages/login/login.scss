@@ -9,6 +9,7 @@
     align-items: center;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 
     input {
       width: 200px;
@@ -22,9 +23,21 @@
       margin: 5px;
       cursor: pointer;
     }
-    span {
-      font-size: 12px;
+    .errorText {
+      font-size: 14px;
       color: red;
+      position: absolute;
+      bottom: -30px;
+      z-index: 10;
+    }
+    .login {
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 5px;
+      width: 100%;
     }
   }
 }
