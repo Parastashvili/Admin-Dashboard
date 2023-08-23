@@ -127,13 +127,22 @@ const New = ({ inputs, title }) => {
                     label="Category"
                     onChange={handleChange}
                   >
-                    <MenuItem value={"carusell"}>First Carusell</MenuItem>
+                    <MenuItem value={"carusell"}>Most Wanted</MenuItem>
                     <MenuItem value={"allProducts"}>All Products</MenuItem>
-                    <MenuItem value={"midderHero"}>Midder Hero</MenuItem>
-                    <MenuItem value={"tools"}>tools</MenuItem>
-                    <MenuItem value={"cleaning"}>cleaning</MenuItem>
-                    <MenuItem value={"electric"}>electric</MenuItem>
-                    <MenuItem value={"users"}>ZZZ Register User</MenuItem>
+                    <MenuItem value={"midderHero"}>3 Item Hero</MenuItem>
+                    <MenuItem value={"electric"}>Electric</MenuItem>
+                    <MenuItem value={"build"}>Build</MenuItem>
+                    <MenuItem value={"cleaning"}>Cleaning</MenuItem>
+                    <MenuItem value={"paint"}>Paint</MenuItem>
+                    <MenuItem value={"handtools"}>Hand Tools</MenuItem>
+                    <MenuItem value={"garden"}>Garden</MenuItem>
+                    <MenuItem value={"water"}>Water</MenuItem>
+                    <MenuItem value={"box"}>Box</MenuItem>
+                    <MenuItem value={"gardenfurn"}>Garden Furniture</MenuItem>
+                    <MenuItem value={"manipulator"}>Manipulator</MenuItem>
+                    <MenuItem value={"tvitmcleli"}>Tvitmcleli</MenuItem>
+                    <MenuItem value={"trailer"}>Trailer</MenuItem>
+                    <MenuItem value={"users"}>Z-Register User</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
