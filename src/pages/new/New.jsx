@@ -71,13 +71,18 @@ const New = ({ inputs, title }) => {
     const value = e.target.value;
     setData({ ...data, [id]: value });
   };
+
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, category), {
+      const docRef = doc(collection(db, category)); // Generate a new document reference
+      const newId = docRef.id; // Get the automatically generated unique ID
+      const newData = {
         ...data,
+        id: newId, // Add the unique ID to your data
         added: new Date().toLocaleDateString(),
-      });
+      };
+      await setDoc(docRef, newData); // Set the data with the unique ID to the document
       navigate(-1);
     } catch (err) {
       alert("Error Try Again");
