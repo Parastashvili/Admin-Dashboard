@@ -71,7 +71,6 @@ const New = ({ inputs, title }) => {
     const value = e.target.value;
     setData({ ...data, [id]: value });
   };
-
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
@@ -88,7 +87,6 @@ const New = ({ inputs, title }) => {
       alert("Error Try Again");
     }
   };
-
   return (
     <div className="new">
       <Sidebar />
