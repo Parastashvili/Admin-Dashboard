@@ -175,5 +175,4 @@ const New = ({ inputs, title }) => {
     </div>
   );
 };
-
 export default New;
